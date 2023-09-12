@@ -9,6 +9,7 @@ import userRoutes from "./routes/user.routes.js";
 connectDB();
 const app = express();
 
+app.set("json spaces", 2);
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
