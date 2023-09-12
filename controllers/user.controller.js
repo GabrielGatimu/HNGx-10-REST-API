@@ -20,12 +20,12 @@ const createUserProfile = asyncHandler(async (req, res) => {
 
   if (newUser) {
     res.status(201).json({
-      message: "New user created successfully",
+      message: "New person created successfully",
       details: newUser,
     });
   } else {
     res.status(400);
-    throw new Error("Invalid User data");
+    throw new Error("Invalid Person data");
   }
 });
 
@@ -39,7 +39,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.status(200).json(user);
   } else {
     res.status(404);
-    throw new Error("No such user found!");
+    throw new Error("No such person found!");
   }
 });
 
@@ -63,7 +63,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error("No such user found!");
+    throw new Error("No such person found!");
   }
 });
 
@@ -74,10 +74,10 @@ const deleteUserProfile = asyncHandler(async (req, res) => {
 
   const user = await User.deleteOne({ email: user_id });
   if (user) {
-    res.status(200).json("User deleted successfully");
+    res.status(200).json("Person deleted successfully");
   } else {
     res.status(404);
-    throw new Error("No such user found!");
+    throw new Error("No such person found!");
   }
 });
 

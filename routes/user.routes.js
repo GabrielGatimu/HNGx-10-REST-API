@@ -5,10 +5,14 @@ import {
   updateUserProfile,
   deleteUserProfile,
 } from "../controllers/user.controller.js";
+import {
+  validateInputs,
+  validateResult,
+} from "../middleware/validateInput.middleware.js";
 
 const router = express.Router();
 
-router.post("/", createUserProfile);
+router.post("/", validateInputs, validateResult, createUserProfile);
 router
   .route("/:user_id")
   .get(getUserProfile)

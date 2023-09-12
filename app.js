@@ -14,7 +14,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 // -- Routes -- //
-app.use("/", userRoutes);
+app.use("/api", userRoutes);
 
 // -- Error Middlewares -- //
 app.use(notFound);
