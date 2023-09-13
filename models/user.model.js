@@ -13,6 +13,7 @@ const userSchema = Schema(
     },
     track: {
       type: String,
+      required: true,
       unique: false,
     },
   },

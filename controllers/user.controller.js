@@ -4,7 +4,7 @@ import User from "../models/user.model.js";
 // @ description  -->  Create a new person
 // @ route        -->  POST /api
 const createUserProfile = asyncHandler(async (req, res) => {
-  const { name, slack_name, role } = req.body;
+  const { name, slack_name, track } = req.body;
 
   const userExists = await User.findOne({ slack_name });
   if (userExists) {
@@ -15,7 +15,7 @@ const createUserProfile = asyncHandler(async (req, res) => {
   const newUser = await User.create({
     name,
     slack_name,
-    role,
+    track,
   });
 
   if (newUser) {
@@ -47,14 +47,14 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @ route        -->  PUT /api/user_id
 const updateUserProfile = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
-  const { name, slack_name, role } = req.body;
+  const { name, slack_name, track } = req.body;
 
   const user = await User.findOne({ slack_name: user_id });
 
   if (user) {
     user.name = name || user.name;
     user.slack_name = slack_name || user.slack_name;
-    user.role = role || user.role;
+    user.track = track || user.track;
 
     const updatedUser = await user.save();
     res.status(200).json({
