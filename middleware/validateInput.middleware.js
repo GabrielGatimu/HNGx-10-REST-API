@@ -7,20 +7,20 @@ export const validateInputs = [
     .isEmpty()
     .withMessage("Person's name is required")
     .isString()
-    .withMessage("Name should be string!"),
-
-  check("role")
+    .withMessage("name should be string!"),
+  check("slack_name")
     .not()
     .isEmpty()
-    .withMessage("Person's role is required")
+    .withMessage("slack_name is required")
     .isString()
-    .withMessage("Role should be string!"),
-  check("email")
+    .withMessage("slack_name should be string!"),
+
+  check("track")
     .not()
     .isEmpty()
-    .withMessage("Person's email is required")
-    .isEmail()
-    .withMessage("Please use a valid email"),
+    .withMessage("Person's track is required")
+    .isString()
+    .withMessage("Track should be string!"),
 ];
 
 export const validateResult = (req, res, next) => {

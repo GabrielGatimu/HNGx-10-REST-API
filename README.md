@@ -56,7 +56,7 @@ The API is available for testing locally.
   ```json
   {
     "name": "John Doe",
-    "slack_name": "johndoe@example.com",
+    "slack_name": "johndoe",
     "track": "Developer"
   }
   ```
@@ -68,7 +68,7 @@ The API is available for testing locally.
     "details": {
       "_id": "12345",
       "name": "John Doe",
-      "slack_name": "johndoe@example.com",
+      "slack_name": "johndoe",
       "track": "Developer"
     }
   }
@@ -87,8 +87,8 @@ The API is available for testing locally.
   {
     "_id": "12345",
     "name": "John Doe",
-    "slack_name": "johndoe@example.com",
-    "track": "Developer"
+    "slack_name": "johndoe",
+    "track": "Backend"
   }
   ```
 
@@ -98,8 +98,8 @@ The API is available for testing locally.
     "details": {
       "_id": "12345",
       "name": "John Doe",
-      "slack_name": "johndoe@example.com",
-      "track": "Developer"
+      "slack_name": "johndoe",
+      "track": "Backend"
     }
   }
   ```
@@ -115,7 +115,7 @@ The API is available for testing locally.
   ```json
   {
     "name": "Updated Name",
-    "slack_name": "update@slack_name.com",
+    "slack_name": "updatedSlackName",
     "track": "Updated track"
   }
   ```
@@ -127,7 +127,7 @@ The API is available for testing locally.
     "New_Person_Details": {
       "_id": "12345",
       "name": "Updated Name",
-      "slack_name": "update@slack_name.com",
+      "slack_name": "updatedSlackName",
       "track": "Updated track"
     }
   }
