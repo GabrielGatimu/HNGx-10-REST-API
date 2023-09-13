@@ -16,7 +16,7 @@ router.post("/", validateInputs, validateResult, createUserProfile);
 router
   .route("/:user_id")
   .get(getUserProfile)
-  .put(updateUserProfile)
+  .put(validateInputs, validateResult, updateUserProfile)
   .delete(deleteUserProfile);
 
 export default router;
