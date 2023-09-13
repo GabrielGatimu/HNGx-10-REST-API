@@ -92,19 +92,7 @@ The API is available for testing locally.
   }
   ```
 
-  ```json
-  {
-    "message": "New person created successfully",
-    "details": {
-      "_id": "12345",
-      "name": "John Doe",
-      "slack_name": "johndoe",
-      "track": "Backend"
-    }
-  }
-  ```
-
-#### Update Person
+#### Update Person Details
 
 - **Description**: Update Person Profile.
 - **HTTP Method**: PUT
@@ -143,13 +131,11 @@ The API is available for testing locally.
 - **Response**:
   ```json
   {
-    "Person deleted successfully"
+    "message": "Person deleted successfully"
   }
   ```
 
 ## Error Handling
 
-```
-404 Not Found: When a resource or URL is not found
-422 Unprocessable Entity: For validation errors, e.g., missing or invalid fields.
-```
+Find all the error status codes and types in the
+more detailed [Documentation.md](./Documentation.md)

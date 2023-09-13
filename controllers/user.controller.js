@@ -9,7 +9,7 @@ const createUserProfile = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({ slack_name });
   if (userExists) {
     res.status(400);
-    throw new Error("Slack_name Already Registered");
+    throw new Error("Slack_name already taken. Try another one");
   }
 
   const newUser = await User.create({
@@ -58,8 +58,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     const updatedUser = await user.save();
     res.status(200).json({
-      Mesage: "Person details updated",
-      New_Person_Details: updatedUser,
+      message: "Person details updated",
+      updated_person_details: updatedUser,
     });
   } else {
     res.status(404);
@@ -74,7 +74,7 @@ const deleteUserProfile = asyncHandler(async (req, res) => {
 
   const user = await User.deleteOne({ slack_name: user_id });
   if (user) {
-    res.status(200).json("Person deleted successfully");
+    res.status(200).json({ message: "Person deleted successfully" });
   } else {
     res.status(404);
     throw new Error("No such person found!");
