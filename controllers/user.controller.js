@@ -4,17 +4,17 @@ import User from "../models/user.model.js";
 // @ description  -->  Create a new person
 // @ route        -->  POST /api
 const createUserProfile = asyncHandler(async (req, res) => {
-  const { name, email, role } = req.body;
+  const { name, slack_name, role } = req.body;
 
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ slack_name });
   if (userExists) {
     res.status(400);
-    throw new Error("Email Already Registered");
+    throw new Error("Slack_name Already Registered");
   }
 
   const newUser = await User.create({
     name,
-    email,
+    slack_name,
     role,
   });
 
@@ -34,7 +34,7 @@ const createUserProfile = asyncHandler(async (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
 
-  const user = await User.findOne({ email: user_id });
+  const user = await User.findOne({ slack_name: user_id });
   if (user) {
     res.status(200).json(user);
   } else {
@@ -47,13 +47,13 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @ route        -->  PUT /api/user_id
 const updateUserProfile = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
-  const { name, email, role } = req.body;
+  const { name, slack_name, role } = req.body;
 
-  const user = await User.findOne({ email: user_id });
+  const user = await User.findOne({ slack_name: user_id });
 
   if (user) {
     user.name = name || user.name;
-    user.email = email || user.email;
+    user.slack_name = slack_name || user.slack_name;
     user.role = role || user.role;
 
     const updatedUser = await user.save();
@@ -72,7 +72,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 const deleteUserProfile = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
 
-  const user = await User.deleteOne({ email: user_id });
+  const user = await User.deleteOne({ slack_name: user_id });
   if (user) {
     res.status(200).json("Person deleted successfully");
   } else {
