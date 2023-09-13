@@ -6,12 +6,12 @@ const userSchema = Schema(
       type: String,
       required: true,
     },
-    email: {
+    slack_name: {
       type: String,
       unique: true,
       required: true,
     },
-    role: {
+    track: {
       type: String,
       unique: false,
     },
