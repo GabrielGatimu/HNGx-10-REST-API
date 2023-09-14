@@ -1,9 +1,9 @@
 import express from "express";
 import {
-  createUserProfile,
-  getUserProfile,
-  updateUserProfile,
-  deleteUserProfile,
+  createPerson,
+  getPerson,
+  updatePerson,
+  deletePerson,
 } from "../controllers/user.controller.js";
 import {
   validateInputs,
@@ -12,11 +12,11 @@ import {
 
 const router = express.Router();
 
-router.post("/", validateInputs, validateResult, createUserProfile);
+router.post("/", validateInputs, validateResult, createPerson);
 router
   .route("/:user_id")
-  .get(getUserProfile)
-  .put(validateInputs, validateResult, updateUserProfile)
-  .delete(deleteUserProfile);
+  .get(getPerson)
+  .put(validateInputs, validateResult, updatePerson)
+  .delete(deletePerson);
 
 export default router;

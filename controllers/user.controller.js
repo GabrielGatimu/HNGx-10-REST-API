@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 
 // @ description  -->  Create a new person
 // @ route        -->  POST /api
-const createUserProfile = asyncHandler(async (req, res) => {
+const createPerson = asyncHandler(async (req, res) => {
   const { name, track } = req.body;
 
   const userExists = await User.findOne({ name });
@@ -30,7 +30,7 @@ const createUserProfile = asyncHandler(async (req, res) => {
 
 // @ description  -->  Get person profile
 // @ route        -->  GET /api/user_id
-const getUserProfile = asyncHandler(async (req, res) => {
+const getPerson = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
 
   const user = await User.findOne({ name: user_id });
@@ -44,7 +44,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
 // @ description  -->  Update person profile
 // @ route        -->  PUT /api/user_id
-const updateUserProfile = asyncHandler(async (req, res) => {
+const updatePerson = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
   const { name, track } = req.body;
 
@@ -67,7 +67,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
 // @ description  -->  Delete person profile
 // @ route        -->  DELETE /api/user_id
-const deleteUserProfile = asyncHandler(async (req, res) => {
+const deletePerson = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
 
   const user = await User.deleteOne({ name: user_id });
@@ -79,9 +79,4 @@ const deleteUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export {
-  createUserProfile,
-  getUserProfile,
-  updateUserProfile,
-  deleteUserProfile,
-};
+export { createPerson, getPerson, updatePerson, deletePerson };
