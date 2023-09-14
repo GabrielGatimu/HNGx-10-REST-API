@@ -4,10 +4,6 @@ const userSchema = Schema(
   {
     name: {
       type: String,
-      required: true,
-    },
-    slack_name: {
-      type: String,
       unique: true,
       required: true,
     },
