@@ -4,17 +4,16 @@ import User from "../models/user.model.js";
 // @ description  -->  Create a new person
 // @ route        -->  POST /api
 const createUserProfile = asyncHandler(async (req, res) => {
-  const { name, slack_name, track } = req.body;
+  const { name, track } = req.body;
 
-  const userExists = await User.findOne({ slack_name });
+  const userExists = await User.findOne({ name });
   if (userExists) {
     res.status(400);
-    throw new Error("Slack_name already taken. Try another one");
+    throw new Error("Name already taken. Try another one");
   }
 
   const newUser = await User.create({
     name,
-    slack_name,
     track,
   });
 
@@ -34,7 +33,7 @@ const createUserProfile = asyncHandler(async (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
 
-  const user = await User.findOne({ slack_name: user_id });
+  const user = await User.findOne({ name: user_id });
   if (user) {
     res.status(200).json(user);
   } else {
@@ -47,13 +46,12 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @ route        -->  PUT /api/user_id
 const updateUserProfile = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
-  const { name, slack_name, track } = req.body;
+  const { name, track } = req.body;
 
-  const user = await User.findOne({ slack_name: user_id });
+  const user = await User.findOne({ name: user_id });
 
   if (user) {
     user.name = name || user.name;
-    user.slack_name = slack_name || user.slack_name;
     user.track = track || user.track;
 
     const updatedUser = await user.save();
@@ -72,7 +70,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 const deleteUserProfile = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
 
-  const user = await User.deleteOne({ slack_name: user_id });
+  const user = await User.deleteOne({ name: user_id });
   if (user) {
     res.status(200).json({ message: "Person deleted successfully" });
   } else {

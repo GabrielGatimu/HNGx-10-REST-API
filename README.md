@@ -1,6 +1,6 @@
 # HNGx-10-REST-API
 
-This REST API provides basic CRUD operations for managing person records.
+This REST API provides basic CRUD operations for managing person records in a database.
 
 ## Tech Stack Used
 
@@ -19,10 +19,11 @@ This REST API provides basic CRUD operations for managing person records.
   - [Update Person Profile](#update-person)
   - [Delete Person Profile](#delete-person)
 - [Error Handling](#error-handling)
+- [UML Diagrams](#uml-diagrams)
 
 ## Testing the API
 
-The API is available for testing locally.
+The API is available for testing locally. You can also deploy it to your own server and test it live.
 
 ### Installation
 
@@ -37,11 +38,30 @@ The API is available for testing locally.
    cd HNGx-10-REST-API
    npm install
    ```
-3. Start the APi
+3. Fill up the .env file with:
+
+   **NOTE: you can also check the '.env.example' file to see the variables required, but these are the essential environment variables required**
+
+- a connection PORT
+- your mongoDB-URI
+- running environment (NODE_ENV).
+
+  For LOCAL instances, use 'development' and 'production' for LIVE instances.
+  The LOCAL instance provides error stack whenever errors occur.
+
+4. Start the Server
 
    ```
    npm start
    ```
+
+   For local instances, you can run :
+
+   ```
+   npm run dev
+   ```
+
+   and the server will restart automatically whenever you make changes
 
 ### Endpoints
 
@@ -51,13 +71,18 @@ The API is available for testing locally.
 - **HTTP Method**: POST
 - **Route**: `/api`
 
+- **_example_**
+
+  ```
+  http://localhost:8000/api
+  ```
+
 - **Request Body**:
 
   ```json
   {
-    "name": "John Doe",
-    "slack_name": "johndoe",
-    "track": "Developer"
+    "name": "Mark Essien",
+    "track": "all"
   }
   ```
 
@@ -66,10 +91,12 @@ The API is available for testing locally.
   {
     "message": "New person created successfully",
     "details": {
-      "_id": "12345",
-      "name": "John Doe",
-      "slack_name": "johndoe",
-      "track": "Developer"
+      "name": "Mark Essien",
+      "track": "all",
+      "_id": "6502bf56fd7ee0569b5e152e",
+      "createdAt": "2023-09-14T08:07:50.934Z",
+      "updatedAt": "2023-09-14T08:07:50.934Z",
+      "__v": 0
     }
   }
   ```
@@ -81,16 +108,24 @@ The API is available for testing locally.
 - **Route**: `/api/user_id`
 - **Request Body**:No request body required.
 
+  **_example:_**
+
+- Request
+  ```
+  http://localhost:8000/api/Mark Essien
+  ```
 - **Response**:
 
-  ```json
-  {
-    "_id": "12345",
-    "name": "John Doe",
-    "slack_name": "johndoe",
-    "track": "Backend"
-  }
-  ```
+```json
+{
+  "_id": "6502bf56fd7ee0569b5e152e",
+  "name": "Mark Essien",
+  "track": "all",
+  "createdAt": "2023-09-14T08:07:50.934Z",
+  "updatedAt": "2023-09-14T08:07:50.934Z",
+  "__v": 0
+}
+```
 
 #### Update Person Details
 
@@ -98,28 +133,36 @@ The API is available for testing locally.
 - **HTTP Method**: PUT
 - **Route**: `/api/user_id`
 
+**_example:_**
+
+- Request
+  ```
+  http://localhost:8000/api/Mark Essien
+  ```
 - **Request Body**:
 
-  ```json
-  {
-    "name": "Updated Name",
-    "slack_name": "updatedSlackName",
-    "track": "Updated track"
-  }
-  ```
+```json
+{
+  "name": "Mark Update",
+  "track": "Mentor"
+}
+```
 
 - **Response**:
-  ```json
-  {
-    "message": "Person details updated",
-    "New_Person_Details": {
-      "_id": "12345",
-      "name": "Updated Name",
-      "slack_name": "updatedSlackName",
-      "track": "Updated track"
-    }
+
+```json
+{
+  "message": "Person details updated",
+  "updated_person_details": {
+    "_id": "6502bf56fd7ee0569b5e152e",
+    "name": "Mark Update",
+    "track": "Mentor",
+    "createdAt": "2023-09-14T08:07:50.934Z",
+    "updatedAt": "2023-09-14T08:17:01.453Z",
+    "__v": 0
   }
-  ```
+}
+```
 
 #### Delete Person
 
@@ -128,6 +171,12 @@ The API is available for testing locally.
 - **Route**: `/api/user_id`
 - **Request Body**:No request body required.
 
+**_example:_**
+
+- Request
+  ```
+  http://localhost:8000/api/Mark Essien
+  ```
 - **Response**:
   ```json
   {
@@ -137,5 +186,9 @@ The API is available for testing locally.
 
 ## Error Handling
 
-Find all the error status codes and types in the
-more detailed [Documentation.md](./Documentation.md)
+Find all the errors that might occur when interacting with the API in the
+more detailed [Documentation.md](./Documentation.md) file. Each error has its type, status code and explanation.
+
+## UML Diagrams
+
+Find the diagrams here []

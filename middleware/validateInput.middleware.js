@@ -8,12 +8,6 @@ export const validateInputs = [
     .withMessage("Person's name is required")
     .isString()
     .withMessage("name should be string!"),
-  check("slack_name")
-    .not()
-    .isEmpty()
-    .withMessage("slack_name is required")
-    .isString()
-    .withMessage("slack_name should be string!"),
 
   check("track")
     .not()
