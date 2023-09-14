@@ -191,4 +191,4 @@ more detailed [Documentation.md](./Documentation.md) file. Each error has its ty
 
 ## UML Diagrams
 
-Find the diagrams here []
+Find the diagram here [UML Diagram](./diagrams/UML-diagram.png)
